@@ -7,7 +7,7 @@ function AddStudent() {
     const navigate = useNavigate();
 
     const navigateToSrecords = () => {
-        // 👇️ navigate to /Srecords
+        //  navigate to /Srecords
         navigate('/Srecords');
     };
 

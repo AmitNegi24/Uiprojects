@@ -8,6 +8,12 @@ function SRecord() {
   const navigateToAddStudent = () => {
     navigate('/AddStudent');
   };
+  const navigateToUpdateStudent = () => {
+    navigate('/UpdateStudent');
+  };
+  const navigateToDeleteStudent = () => {
+    navigate('/DeleteStudent');
+  };
   const [data, setData] = useState([]);
 
   const fetchData = () => {
@@ -57,8 +63,8 @@ function SRecord() {
       </div>
       <div className='buttonbox'>
         <button onClick={navigateToAddStudent}>Add Student</button>
-        <button>Update Student</button>
-        <button>Delete Student</button>
+        <button onClick={navigateToUpdateStudent}>Update Student</button>
+        <button onClick={navigateToDeleteStudent }>Delete Student</button>
       </div>
     </div>
   )

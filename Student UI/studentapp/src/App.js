@@ -5,6 +5,8 @@ import Navbar from './Components/Navbar/Navbar';
 import SRecord from './Components/studentrecord/SRecord';
 import Systemlog from './Components/Systemlogs/Systemlog';
 import AddStudent from './Components/studentrecord/AddStudent';
+import UpdateStudent from './Components/studentrecord/UpdateStudent';
+import DeleteStudent from './Components/studentrecord/DeleteStudent';
 
 function App() {
 	
@@ -17,6 +19,8 @@ function App() {
 					<Route path="/SRecords" element={<SRecord />}></Route>
 					<Route path="/Systemlog" element={<Systemlog />}></Route>
 					<Route path="/AddStudent" element={<AddStudent />}></Route>
+					<Route path="/UpdateStudent" element={<UpdateStudent />}></Route>
+					<Route path="/DeleteStudent" element={<DeleteStudent />}></Route>
 					
 				</Routes>
 			</BrowserRouter>
