@@ -1,7 +1,13 @@
 import React from 'react'
 import { useEffect, useState } from "react";
 import './SRecords.css'
+import { useNavigate} from 'react-router-dom';
 function SRecord() {
+  const navigate = useNavigate();
+
+  const navigateToAddStudent = () => {
+    navigate('/AddStudent');
+  };
   const [data, setData] = useState([]);
 
   const fetchData = () => {
@@ -50,7 +56,7 @@ function SRecord() {
         </table>
       </div>
       <div className='buttonbox'>
-        <button>Add Student</button>
+        <button onClick={navigateToAddStudent}>Add Student</button>
         <button>Update Student</button>
         <button>Delete Student</button>
       </div>
