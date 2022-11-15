@@ -1,7 +1,8 @@
 import React from 'react'
 import { useEffect, useState } from "react";
+import axios from 'axios'
 import './SRecords.css'
-import { useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 function SRecord() {
   const navigate = useNavigate();
 
@@ -14,25 +15,34 @@ function SRecord() {
   const navigateToDeleteStudent = () => {
     navigate('/DeleteStudent');
   };
+
   const [data, setData] = useState([]);
 
-  const fetchData = () => {
-    fetch(`getstudents url`)
-      .then((response) => response.json())
-      .then((actualData) => {
-        console.log(actualData);
-        setData(actualData.students);
-        console.log(data);
-      })
-      .catch((err) => {
-        console.log(err.message);
-      });
-  };
-
   useEffect(() => {
-    
-    fetchData();
-  }, []);// eslint-disable-line react-hooks/exhaustive-deps
+    axios.get('http://localhost:3001/getStudents')
+      .then(res => {
+        console.log(res.data)
+        setData(res?.data?.data)
+      })
+      .catch(err => {
+        alert("something went wrong");
+      })
+  }, []);
+
+  const renderTable = () => {
+    return data.length>0 && data.map((student,index) => {
+      return (
+        <tr key={index}>
+          <tr>{index+1}</tr>
+          <td>{student.Name}</td>
+          <td>{student.Age}</td>
+          <td>{student.Mobile}</td>
+          <td>{student.Email}</td>
+        </tr>
+      )
+    })
+  }
+
 
   return (
     <div>
@@ -48,23 +58,14 @@ function SRecord() {
             </tr>
           </thead>
           <tbody>
-            {data.map((item, index) => (
-              <tr key={index}>
-                <td>{item.SNo}</td>
-                <td>{item.Name}</td>
-                <td>{item.Age}</td>
-                <td>{item.Mobile}</td>
-                <td>{item.Email}</td>
-              </tr>
-            ))}
-
+            {renderTable()}
           </tbody>
         </table>
       </div>
       <div className='buttonbox'>
         <button onClick={navigateToAddStudent}>Add Student</button>
         <button onClick={navigateToUpdateStudent}>Update Student</button>
-        <button onClick={navigateToDeleteStudent }>Delete Student</button>
+        <button onClick={navigateToDeleteStudent}>Delete Student</button>
       </div>
     </div>
   )
